@@ -78,6 +78,7 @@ public class ActiveVisitTestClass extends BaseClass{
 	  
 	  ap = new ActiveVisitPageClass(driver);
 	  rp.clickHomeButton();
+	  rp.clickHomeButton();
 	  hp.clickOnActiveVisits();
 	  Boolean result = ap.isPatientNameIsDisplayed(fName.concat(gName));
 	  Assert.assertTrue(result);

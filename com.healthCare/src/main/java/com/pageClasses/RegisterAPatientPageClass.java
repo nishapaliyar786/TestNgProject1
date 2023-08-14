@@ -153,7 +153,7 @@ public class RegisterAPatientPageClass {
 	
 	public void clickHomeButton()
 	{
-		gl.clickOnElement(home);
+		gl.clickUsingJS(driver, home);
 	}
 	
 	public void clickStartVisit()
