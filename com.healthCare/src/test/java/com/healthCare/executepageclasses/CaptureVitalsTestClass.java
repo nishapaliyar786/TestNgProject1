@@ -16,11 +16,7 @@ public class CaptureVitalsTestClass extends BaseClass{
 	RegisterAPatientPageClass rp;
 	CaptureVitalsPageClass cp;
 	
-	@Test
-	public void verifyThePatientIsInActiveVisitsWhenVisitStarts()
-	{
-		
-	}
+	
   @Test
 
   public void verifyAllAddVitalDetailsOfRegisteredPatient(String uname,String password) throws IOException {

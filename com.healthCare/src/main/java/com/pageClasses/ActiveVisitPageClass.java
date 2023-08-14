@@ -25,6 +25,7 @@ public class ActiveVisitPageClass {
 	@FindBy(xpath  = "//table[@id='active-visits']//th")
 	List<WebElement> col;
 	
+	
 	public Boolean isPatientNameIsDisplayed(String name)
 	{
 		int rowCount = row.size();   
@@ -53,6 +54,8 @@ public class ActiveVisitPageClass {
 		
 	
 	}
+	
+	
 }
 
 
