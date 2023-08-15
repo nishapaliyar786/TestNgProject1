@@ -76,7 +76,6 @@ public class ActiveVisitTestClass extends BaseClass{
 	  rp.clickStartVisit();
 	  rp.clickStartVisitConfirm();
 	  
-	  ap = new ActiveVisitPageClass(driver);
 	  rp.clickHomeButton();
 	  rp.clickHomeButton();
 	  hp.clickOnActiveVisits();

@@ -8,11 +8,13 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.utilities.ExcelReadClass;
+import com.utilities.ExplicitWaitClass;
 import com.utilities.GeneralUtilities;
 
 public class RegisterAPatientPageClass {
 	WebDriver driver;
 	GeneralUtilities gl = new GeneralUtilities();
+	ExplicitWaitClass el = new ExplicitWaitClass();
 	
 	public RegisterAPatientPageClass(WebDriver driver)
 	{
@@ -153,11 +155,13 @@ public class RegisterAPatientPageClass {
 	
 	public void clickHomeButton()
 	{
+		el.presenceOfElementToBeClickable(driver, home);
 		gl.clickUsingJS(driver, home);
 	}
 	
 	public void clickStartVisit()
 	{
+		el.presenceOfElementToBeSelected(driver, startVisit);
 		gl.clickOnElement(startVisit);
 	}
 	

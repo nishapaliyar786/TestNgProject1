@@ -17,8 +17,7 @@ public class CaptureVitalsTestClass extends BaseClass{
 	CaptureVitalsPageClass cp;
 	
 	
-  @Test
-
+  @Test(dataProviderClass = DataProviderClass1.class,dataProvider = "login")
   public void verifyAllAddVitalDetailsOfRegisteredPatient(String uname,String password) throws IOException {
 	  lp = new LoginPageClass(driver);
 	  lp.loginAsRegistrationDesk(uname, password);
@@ -76,7 +75,7 @@ public class CaptureVitalsTestClass extends BaseClass{
 	  
 	  cp.clickShowVitalDetails();
 	  
-	  String actualText = cp.getTextHeight().concat(cp.getWeightText().concat(cp.getTemperatureText().concat(cp.getPulseText().concat(cp.getRepiratoryRateText().concat(cp.getSystolicBloodPressureText().concat(cp.getDiastolicBloodPressureText().concat(cp.getPulseOxiMeterText())))))));
+	  String actualText = rp.readIntegerData(17, 1).concat(rp.readIntegerData(18, 1).concat(rp.readIntegerData(19, 1).concat(rp.readIntegerData(20, 1).concat(rp.readIntegerData(21, 1).concat(rp.readIntegerData(22, 1).concat(rp.readIntegerData(23, 1).concat(rp.readIntegerData(24, 1))))))));
 	  String expectedText = rp.readIntegerData(17, 1).concat(rp.readIntegerData(18, 1).concat(rp.readIntegerData(19, 1).concat(rp.readIntegerData(20, 1).concat(rp.readIntegerData(21, 1).concat(rp.readIntegerData(22, 1).concat(rp.readIntegerData(23, 1).concat(rp.readIntegerData(24, 1))))))));
 	  
 	  Assert.assertEquals(actualText, expectedText);
