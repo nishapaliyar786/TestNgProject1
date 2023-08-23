@@ -68,7 +68,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/x
 				<version>3.0.0-M7</version>
 				<configuration>
 					<suiteXmlFiles>
-						<file>parallel.xml</file>
+						<file>testng.xml</file>
 					</suiteXmlFiles>
 				</configuration>
 			</plugin>
