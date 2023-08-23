@@ -8,6 +8,8 @@ import org.testng.annotations.Test;
 import com.pageClasses.HomePageClass;
 import com.pageClasses.LoginPageClass;
 
+import retry.RetryAnalyzer;
+
 
 
 public class LoginPageTestClass extends BaseClass{
@@ -15,7 +17,7 @@ public class LoginPageTestClass extends BaseClass{
 	LoginPageClass lp;
 	HomePageClass hp;
 	
-  @Test(dataProviderClass = DataProviderClass1.class,dataProvider = "login")
+  @Test(dataProviderClass = DataProviderClass1.class,dataProvider = "login",retryAnalyzer = RetryAnalyzer.class,groups = {"group2"})
   public void verifySuccessfulLogin(String uname, String password) {
 	  lp = new LoginPageClass(driver);
 	  lp.loginAsRegistrationDesk(uname,password);
@@ -26,7 +28,7 @@ public class LoginPageTestClass extends BaseClass{
 	  Assert.assertEquals(actualResult, expectedResult,"actual and exxpected are not same");
   }
   
-  @Test(dataProviderClass = DataProviderClass1.class,dataProvider = "dp")
+  @Test(dataProviderClass = DataProviderClass1.class,dataProvider = "dp",retryAnalyzer = RetryAnalyzer.class,groups = {"group2"})
   public void verifyUnsuccessfulLogin(String uname,String password1)
   {
 	  lp = new LoginPageClass(driver);
@@ -37,12 +39,12 @@ public class LoginPageTestClass extends BaseClass{
 	  Assert.assertEquals(actualResult, expectedResult);
   }
   
-  @Test
+  @Test(retryAnalyzer = RetryAnalyzer.class,groups = {"group1"})
 	public void verifyTheCorrectSiteIsLoadedWhileHittingTheURL()
 	{
 		lp = new LoginPageClass(driver);
 		String actualResult = lp.getUrlOfLoginPage();
-		String expectedResult = "https://demo.openmrs.org/openmrs/login.htm";
+		String expectedResult = "https://demo.openmrs.org/openmrs/login.htm;";
 		
 		Assert.assertEquals(actualResult, expectedResult);
 	}

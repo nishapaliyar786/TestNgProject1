@@ -12,12 +12,14 @@ import com.pageClasses.HomePageClass;
 import com.pageClasses.LoginPageClass;
 import com.pageClasses.RegisterAPatientPageClass;
 
+import retry.RetryAnalyzer;
+
 public class RegisterAPatientTestClass extends BaseClass{
 	LoginPageClass lp;
 	HomePageClass hp;
 	RegisterAPatientPageClass rp;
 	FindAPatientPageClass fp;
-  @Test(dataProviderClass = DataProviderClass1.class,dataProvider = "login")
+  @Test(dataProviderClass = DataProviderClass1.class,dataProvider = "login",retryAnalyzer = RetryAnalyzer.class)
   public void verifyToRegisterAPatient(String uname, String password) throws IOException {
 	  lp = new LoginPageClass(driver);
 	  lp.loginAsRegistrationDesk(uname, password);
@@ -44,7 +46,7 @@ public class RegisterAPatientTestClass extends BaseClass{
 	  
   } 
   
-  @Test(dataProviderClass = DataProviderClass1.class,dataProvider = "login")
+  @Test(dataProviderClass = DataProviderClass1.class,dataProvider = "login",retryAnalyzer = RetryAnalyzer.class)
   public void verifyToDeleteAPatient(String uname, String password) throws IOException {
 	  lp = new LoginPageClass(driver);
 	  lp.loginAsRegistrationDesk(uname, password);

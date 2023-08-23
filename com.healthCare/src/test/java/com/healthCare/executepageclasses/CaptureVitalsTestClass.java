@@ -10,6 +10,8 @@ import com.pageClasses.HomePageClass;
 import com.pageClasses.LoginPageClass;
 import com.pageClasses.RegisterAPatientPageClass;
 
+import retry.RetryAnalyzer;
+
 public class CaptureVitalsTestClass extends BaseClass{
 	LoginPageClass lp;
 	HomePageClass hp;
@@ -17,7 +19,7 @@ public class CaptureVitalsTestClass extends BaseClass{
 	CaptureVitalsPageClass cp;
 	
 	
-  @Test(dataProviderClass = DataProviderClass1.class,dataProvider = "login")
+  @Test(dataProviderClass = DataProviderClass1.class,dataProvider = "login",retryAnalyzer = RetryAnalyzer.class)
   public void verifyAllAddVitalDetailsOfRegisteredPatient(String uname,String password) throws IOException {
 	  lp = new LoginPageClass(driver);
 	  lp.loginAsRegistrationDesk(uname, password);
@@ -25,8 +27,8 @@ public class CaptureVitalsTestClass extends BaseClass{
 	  hp.clickOnRegisterAPatient();
 	  
 	  rp = new RegisterAPatientPageClass(driver);
-	  String gName=rp.readStringData(5, 3);
-	  String fName = rp.readStringData(6, 3);
+	  String gName=rp.readStringData(5, 1);
+	  String fName = rp.readStringData(6, 1);
       rp.enterFullName(gName,fName );
 	  
 	  rp.patientsGender(rp.readStringData(7, 1));
@@ -76,8 +78,8 @@ public class CaptureVitalsTestClass extends BaseClass{
 	  cp.clickShowVitalDetails();
 	  
 	  String actualText = rp.readIntegerData(17, 1).concat(rp.readIntegerData(18, 1).concat(rp.readIntegerData(19, 1).concat(rp.readIntegerData(20, 1).concat(rp.readIntegerData(21, 1).concat(rp.readIntegerData(22, 1).concat(rp.readIntegerData(23, 1).concat(rp.readIntegerData(24, 1))))))));
-	  String expectedText = rp.readIntegerData(17, 1).concat(rp.readIntegerData(18, 1).concat(rp.readIntegerData(19, 1).concat(rp.readIntegerData(20, 1).concat(rp.readIntegerData(21, 1).concat(rp.readIntegerData(22, 1).concat(rp.readIntegerData(23, 1).concat(rp.readIntegerData(24, 1))))))));
-	  
+	  System.out.println(actualText.toString());
+	  String expectedText = "163.0 cm55.0 kg40.0 DEG C40 beats/min60170 mmHg80 mmHg70 %";
 	  Assert.assertEquals(actualText, expectedText);
   }
 }

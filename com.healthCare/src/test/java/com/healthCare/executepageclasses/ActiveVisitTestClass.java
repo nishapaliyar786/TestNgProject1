@@ -13,13 +13,15 @@ import com.pageClasses.HomePageClass;
 import com.pageClasses.LoginPageClass;
 import com.pageClasses.RegisterAPatientPageClass;
 
+import retry.RetryAnalyzer;
+
 public class ActiveVisitTestClass extends BaseClass{
 	LoginPageClass lp;
 	HomePageClass hp;
 	RegisterAPatientPageClass rp;
 	FindAPatientPageClass fp;
 	ActiveVisitPageClass ap;
-  @Test(dataProviderClass = DataProviderClass1.class,dataProvider = "login")
+  @Test(dataProviderClass = DataProviderClass1.class,dataProvider = "login",priority = 0,retryAnalyzer = RetryAnalyzer.class)
   public void verifyThePatientIsNotDisplayedInActiveVisitsWhenVisitNotStarted(String uname, String password) throws IOException {
 	  lp = new LoginPageClass(driver);
 	  lp.loginAsRegistrationDesk(uname, password);
@@ -49,7 +51,7 @@ public class ActiveVisitTestClass extends BaseClass{
 	  Boolean actualOutcome = ap.isPatientNameIsDisplayed(gName.concat(fName));
 	  assertFalse(actualOutcome);
   }
-  @Test(dataProviderClass = DataProviderClass1.class,dataProvider = "login")
+  @Test(dataProviderClass = DataProviderClass1.class,dataProvider = "login",priority = 1,retryAnalyzer = RetryAnalyzer.class)
 	public void verifyThePatientIsInActiveVisitsWhenVisitStarts(String uname, String password) throws IOException
 	{
 	  lp = new LoginPageClass(driver);
@@ -58,8 +60,8 @@ public class ActiveVisitTestClass extends BaseClass{
 	  hp.clickOnRegisterAPatient();
 	  
 	  rp = new RegisterAPatientPageClass(driver);
-	  String gName=rp.readStringData(5, 3);
-	  String fName = rp.readStringData(6, 3);
+	  String gName=rp.readStringData(5, 4);
+	  String fName = rp.readStringData(6, 4);
       rp.enterFullName(gName,fName );
 	  
 	  rp.patientsGender(rp.readStringData(7, 1));
@@ -79,7 +81,7 @@ public class ActiveVisitTestClass extends BaseClass{
 	  rp.clickHomeButton();
 	  rp.clickHomeButton();
 	  hp.clickOnActiveVisits();
-	  Boolean result = ap.isPatientNameIsDisplayed(fName.concat(gName));
+	  Boolean result = ap.isPatientNameIsDisplayed(fName.concat(" ").concat(gName));
 	  Assert.assertTrue(result);
 	  
 	  

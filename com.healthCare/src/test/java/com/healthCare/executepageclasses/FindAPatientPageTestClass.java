@@ -10,6 +10,8 @@ import com.pageClasses.HomePageClass;
 import com.pageClasses.LoginPageClass;
 import com.pageClasses.RegisterAPatientPageClass;
 
+import retry.RetryAnalyzer;
+
 public class FindAPatientPageTestClass extends BaseClass{
 
 	LoginPageClass lp;
@@ -17,7 +19,7 @@ public class FindAPatientPageTestClass extends BaseClass{
 	FindAPatientPageClass fp;
 	RegisterAPatientPageClass rp;
 	 
-	@Test(dataProviderClass = DataProviderClass1.class,dataProvider = "login")
+	@Test(dataProviderClass = DataProviderClass1.class,dataProvider = "login",retryAnalyzer = RetryAnalyzer.class,groups = {"group2"})
 	public void verifyTheRegisteredPatientIsFoundOrNotInPatientRecordTable(String uname, String password) throws IOException
 	{
 		lp = new LoginPageClass(driver);
@@ -30,8 +32,8 @@ public class FindAPatientPageTestClass extends BaseClass{
 		  String gName=rp.readStringData(5, 2);
 		  String fName = rp.readStringData(6, 2);
 		  fp = new FindAPatientPageClass(driver);
-		  Boolean actualResult = fp.isPatientNameIsDisplayed(gName.concat(fName));
-		  Assert.assertFalse(actualResult);
+		  Boolean actualResult = fp.isPatientNameIsDisplayed(gName.concat(" ").concat(fName));
+		  Assert.assertTrue(actualResult);
 		  
 		  
 	}

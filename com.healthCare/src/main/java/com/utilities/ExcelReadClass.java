@@ -16,7 +16,7 @@ static XSSFSheet sh;
 
 public static String getIntergerData(int a, int b) throws IOException {
 	// TODO Auto-generated method stub
-	f = new FileInputStream("C:\\Users\\User\\eclipse-workspace\\com.healthCare\\src\\test\\resources\\excel.xlsx");
+	f = new FileInputStream(System.getProperty("user.dir")+"\\src\\test\\resources\\excel.xlsx");
 	w = new XSSFWorkbook(f);
 	sh = w.getSheet("sheet1");
 	Row r = sh.getRow(a);
@@ -26,7 +26,7 @@ public static String getIntergerData(int a, int b) throws IOException {
 }
 public static String getStringData(int a,int b)throws IOException
 {
-	f = new FileInputStream("C:\\Users\\User\\eclipse-workspace\\com.healthCare\\src\\test\\resources\\excel.xlsx");
+	f = new FileInputStream(System.getProperty("user.dir")+"\\\\src\\\\test\\\\resources\\\\excel.xlsx");
 	w = new XSSFWorkbook(f);
 	sh = w.getSheet("sheet1");
 	Row r = sh.getRow(a);
